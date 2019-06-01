@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.sky.ad</groupId>
+    <artifactId>sky-ad</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>ad-eureka</module>
+        <module>ad-gateway</module>
+        <module>ad-service</module>
+    </modules>
+
+    <!--新增 begin-->
+    <name>sky-ad</name>
+    <packaging>pom</packaging>
+    <description>sky ad study</description>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.0.RELEASE</version>
+    </parent>
+
+    <properties>
+        <spring-cloud.version>Finchley.RELEASE</spring-cloud.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <!--插件-->
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.16.18</version>
+        </dependency>
+        <dependency>
+            <!--测试用例-->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <!--作用域-->
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <!--自动管理子工程所依赖的内库版本信息-->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <!--上文变量的使用-->
+                <version>${spring-cloud.version}</version>
+                <type>pom</type>
+                <!--只是在引用pom时会自动使用父工程定义的版本-->
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <repositories>
+        <!--定义mavend的远程仓库-->
+        <repository>
+            <id>spring-milestones</id>
+            <name>Spring Milestones</name>
+            <url>https://repo.spring.io/milestone</url>
+            <snapshots>
+                <!--不使用开发版本-->
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+    <!--新增 end-->
+</project>
